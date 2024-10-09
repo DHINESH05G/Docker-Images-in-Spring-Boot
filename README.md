@@ -16,22 +16,22 @@ Example Spring Boot Application
 Create a simple Spring Boot application with a REST controller.
 
 1.1 Application Class
-package com.example.demo;
+package com.example.dockerproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class dockerprojectApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(dockerprojectApplication.class, args);
     }
 }
 1.2 REST Controller
-Create a REST controller class named HelloController in the com.example.demo.controller package.
+Create a REST controller class named HelloController in the com.example.dockerproject.controller package.
 
-package com.example.demo.controller;
+package com.example.dockerproject.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,7 +76,7 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copy the built jar file into the container
-COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
+COPY target/dockerproject.jar app.jar
 
 # Expose port 8080
 EXPOSE 8080
@@ -87,7 +87,7 @@ Explanation:
 
 FROM openjdk:17-jdk-alpine: Uses the official OpenJDK base image with JDK 17.
 WORKDIR /app: Sets the working directory inside the container to /app.
-COPY target/demo-0.0.1-SNAPSHOT.jar app.jar: Copies the built jar file from the target directory into the container.
+COPY target/dockerproject.jar app.jar: Copies the built jar file from the target directory into the container.
 EXPOSE 8080: Exposes port 8080 to the host.
 ENTRYPOINT ["java", "-jar", "app.jar"]: Specifies the command to run the application.
 Step 3: Build the Spring Boot Application
@@ -95,28 +95,28 @@ Step 3: Build the Spring Boot Application
 Run the following command to build the jar file of your Spring Boot application:
 
 ./mvnw clean package
-This command will generate a jar file in the target directory, for example, target/demo-0.0.1-SNAPSHOT.jar.
+This command will generate a jar file in the target directory, for example, target/dockerproject-0.0.1-SNAPSHOT.jar.
 
 Step 4: Build the Docker Image
 4.1 Build the Docker Image
 Run the following command to build the Docker image:
 
-docker build -t demo-app .
+docker build -t dockerproject-app .
 Explanation:
 
 docker build: The Docker command to build an image.
--t demo-app: Tags the image with the name demo-app.
+-t dockerproject-app: Tags the image with the name dockerproject-app.
 .: Specifies the current directory as the build context.
 Step 5: Run the Docker Container
 5.1 Run the Docker Container
 Run the following command to start a Docker container from the image:
 
-docker run -p 8080:8080 demo-app
+docker run -p 8080:8080 dockerproject-app
 Explanation:
 
 docker run: The Docker command to run a container.
 -p 8080:8080: Maps port 8080 of the container to port 8080 on the host machine.
-demo-app: The name of the Docker image to run.
+dockerproject-app: The name of the Docker image to run.
 Step 6: Test the Application
 6.1 Access the Application
 Open a web browser or a tool like Postman and navigate to the following URL:
@@ -148,4 +148,4 @@ Replace <container_id> with the actual container ID.
 7.5 Remove a Docker Image
 To remove a Docker image, run:
 
-docker rmi demo-app
+docker rmi dockerproject-app
