@@ -28,6 +28,7 @@ public class dockerprojectApplication {
         SpringApplication.run(dockerprojectApplication.class, args);
     }
 }
+
 1.2 REST Controller
 Create a REST controller class named HelloController in the com.example.dockerproject.controller package.
 
@@ -44,6 +45,7 @@ public class HelloController {
         return "Hello, Docker!";
     }
 }
+
 1.3 Maven Configuration
 Ensure that your pom.xml is configured correctly. The default configuration provided by Spring Initializr should suffice.
 
@@ -63,6 +65,7 @@ Ensure that your pom.xml is configured correctly. The default configuration prov
         </plugin>
     </plugins>
 </build>
+
 Step 2: Create a Dockerfile
 A Dockerfile is a script containing instructions to build a Docker image.
 
@@ -95,6 +98,7 @@ Step 3: Build the Spring Boot Application
 Run the following command to build the jar file of your Spring Boot application:
 
 ./mvnw clean package
+
 This command will generate a jar file in the target directory, for example, target/dockerproject-0.0.1-SNAPSHOT.jar.
 
 Step 4: Build the Docker Image
@@ -102,6 +106,7 @@ Step 4: Build the Docker Image
 Run the following command to build the Docker image:
 
 docker build -t dockerproject-app .
+
 Explanation:
 
 docker build: The Docker command to build an image.
@@ -112,6 +117,7 @@ Step 5: Run the Docker Container
 Run the following command to start a Docker container from the image:
 
 docker run -p 8080:8080 dockerproject-app
+
 Explanation:
 
 docker run: The Docker command to run a container.
@@ -122,6 +128,7 @@ Step 6: Test the Application
 Open a web browser or a tool like Postman and navigate to the following URL:
 
 http://localhost:8080/hello
+
 You should see the message "Hello, Docker!" returned from the HelloController.
 
 Step 7: Additional Docker Commands
@@ -129,10 +136,12 @@ Step 7: Additional Docker Commands
 To list all Docker images on your system, run:
 
 docker images
+
 7.2 List Running Containers
 To list all running Docker containers, run:
 
 docker ps
+
 7.3 Stop a Running Container
 To stop a running Docker container, run:
 
@@ -143,6 +152,7 @@ Replace <container_id> with the actual container ID obtained from the docker ps 
 To remove a Docker container, run:
 
 docker rm <container_id>
+
 Replace <container_id> with the actual container ID.
 
 7.5 Remove a Docker Image
